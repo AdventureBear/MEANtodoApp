@@ -25,6 +25,24 @@ todoApp.controller('TodoCtrl', function($rootScope, $scope, todosFactory) {
         }
     };
 
+
+    //update the status of the Todo
+    $scope.updateStatus = function($event, _id, i) {
+        var cbk = $event.target.checked;
+        var _t = $scope.todos[i];
+        todosFactory.updateTodo({
+            _id: _id,
+            isCompleted: cbk,
+            todo: _t.todo
+        }).then(function(data) {
+            if (data.data.updatedExisting) {
+                _t.isCompleted = cbk;
+            } else {
+                alert('Oops something went wrong!');
+            }
+        });
+    };
+
     // Update the edited Todo
     $scope.edit = function($event, i) {
         if ($event.which == 13 && $event.target.value.trim()) {

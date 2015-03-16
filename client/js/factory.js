@@ -9,15 +9,15 @@ todoApp.factory('todosFactory', function($http) {
         return $http.get(urlBase);
     };
 
-    _todoService.saveTodo = function() {
+    _todoService.saveTodo = function(todo) {
         return $http.post(urlBase, todo);
     };
 
-    _todoService.updateTodo = function() {
+    _todoService.updateTodo = function(todo) {
         return $http.put(urlBase,todo);
     };
 
-    _todoService.deleteTodo = function() {
+    _todoService.deleteTodo = function(id) {
         return $http.delete(urlBase + '/' + id);
     };
 
